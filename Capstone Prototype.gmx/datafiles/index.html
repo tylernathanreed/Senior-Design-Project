@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Callback Example</title>
+
+		<style>
+			body
+			{
+				background: #222222;
+				color: #CCCCCC;
+			}
+
+			#container
+			{
+				width: 992px;
+				height: 544px;
+				margin: 0px auto;
+				margin-top: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="container">
+
+			<canvas id="canvas" width="992" height="544">
+				<p>Your browser doesn't support HTML5 canvas.</p>
+			</canvas>
+			
+			<p align="center">
+				<input type="button" value="Large Sight Distance" onClick="gm_callback.JS_variable_set(100000, sight_distance, 512);">
+				<input type="button" value="Small Sight Distance" onClick="gm_callback.JS_variable_set(100000, sight_distance, 256);">
+			</p>
+		</div>	
+	</body>
+</html>
