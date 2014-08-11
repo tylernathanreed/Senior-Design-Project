@@ -125,12 +125,14 @@
     <room>rooms\room_init</room>
     <room>rooms\room_main</room>
   </rooms>
-  <constants number="5">
+  <constants number="7">
     <constant name="MASK_PRECISE">0</constant>
     <constant name="MASK_RECTANGLE">1</constant>
     <constant name="MASK_ELLIPSE">2</constant>
     <constant name="MASK_DIAMOND">3</constant>
     <constant name="ds_type_polygon">100</constant>
+    <constant name="GM_build_date">0</constant>
+    <constant name="GM_version">0</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>
