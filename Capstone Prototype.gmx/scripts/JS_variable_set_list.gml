@@ -1,21 +1,21 @@
 //* Description *//
-// Usage: JS_variable_set(inst, name, value);
-// Function: Sets the Value of the specified Variable from the specified Instance
+// Usage: JS_variable_set_list(inst, names, values);
+// Function: Sets the Values of the specified Variables from the specified Instance
 // Arguments:
 // 1) inst : id - The ID of the specified Instance
-// 2) name : string - The Name of the Variable
-// 3) value : any - The New Value of the specified Variable
+// 2) names : JSON List - The Names of the Variable
+// 3) values : JSON Map - The New Values of the specified Variables
 
 //* Arguments *//
-var inst, name, value;
+var inst, names, values;
 
 inst = argument0;
-name = string(argument1);
-value = argument2;
+names = json_decode(argument1);
+values = json_decode(argument2);
 
 //* Callback *//
 // Make sure the Script is Defined in the Callback
-if(!callback_script("JS_variable_set", argument_count))
+if(!callback_script("JS_variable_set_list", argument_count))
     exit;
 
 //* Validation *//
@@ -27,14 +27,22 @@ if(!instance_exists(inst))
 if(!object_is_ancestor(inst.object_index, par_all))
     return false;
 
+// Make sure the Names are a List
+if(!ds_exists(names, ds_type_list))
+    return false;
+
+// Make sure the Values are a Map
+if(!ds_exists(values, ds_type_map))
+    return false;
+
 //* Main Body *//
 // Create the API Map
 var api = ds_map_create();
 
 // Add the API Attributes
-ds_map_add(api, "type", "set");
-ds_map_add(api, "name", name);
-ds_map_add(api, "value", value);
+ds_map_add(api, "type", "set-list");
+ds_map_add(api, "name", names);
+ds_map_add(api, "value", values);
 
 // Set the API Map to the Instance
 inst.js_api = api;

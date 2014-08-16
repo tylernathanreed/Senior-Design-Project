@@ -89,11 +89,17 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>//* Sight Control *//
+// Default Values
+sight_distance_default = 384;
+sight_angle_default = 25;
+sight_precision_default = 1;
+sight_polygon_default = noone;
+
 // Sight Variables
-sight_distance = 384;
-sight_angle = 25;
-sight_precision = 1;
-sight_polygon = noone;
+sight_distance = sight_distance_default;
+sight_angle = sight_angle_default;
+sight_precision = sight_precision_default;
+sight_polygon = sight_polygon_default;
 
 // Target Variables
 target = noone;
@@ -463,7 +469,10 @@ event_inherited();
             <string>//* JS API Trigger *//
 // Make sure the API Map Exists
 if(!ds_exists(js_api, ds_type_map))
+{
+    echo("par_mobile (" + string(id) + "): Invalid call to JS API! DS Map " + string(js_api) + " does not exist!");
     exit;
+}
 
 // Determine the API Attributes
 var type, name, value;

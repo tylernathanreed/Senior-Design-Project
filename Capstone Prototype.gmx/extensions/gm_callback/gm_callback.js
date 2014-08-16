@@ -34,7 +34,7 @@ function callback_script(extension_name, argument_count)
 		}
 
 		// Remove the Trailing Comma
-		args = args.slice(0, -1);
+		args = args.substring(0, args.length - 2);
 
 		// Delimit the GM
 		gmres = gmres + ", ";

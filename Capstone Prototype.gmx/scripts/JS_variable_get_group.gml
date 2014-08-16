@@ -1,21 +1,21 @@
 //* Description *//
-// Usage: JS_variable_set(inst, name, value);
-// Function: Sets the Value of the specified Variable from the specified Instance
+// Usage: JS_variable_get_group(inst, group, def);
+// Function: Returns the Values of the specified Group from the specified Instance
 // Arguments:
 // 1) inst : id - The ID of the specified Instance
-// 2) name : string - The Name of the Variable
-// 3) value : any - The New Value of the specified Variable
+// 2) group : string - The Name of the Variable Group
+// 3) def : any - The Default Value to return if the Group is not Found
 
 //* Arguments *//
-var inst, name, value;
+var inst, group, def;
 
 inst = argument0;
-name = string(argument1);
-value = argument2;
+group = string(argument1);
+def = argument2;
 
 //* Callback *//
 // Make sure the Script is Defined in the Callback
-if(!callback_script("JS_variable_set", argument_count))
+if(!callback_script("JS_variable_get_group", argument_count))
     exit;
 
 //* Validation *//
@@ -32,19 +32,19 @@ if(!object_is_ancestor(inst.object_index, par_all))
 var api = ds_map_create();
 
 // Add the API Attributes
-ds_map_add(api, "type", "set");
-ds_map_add(api, "name", name);
-ds_map_add(api, "value", value);
+ds_map_add(api, "type", "get-group");
+ds_map_add(api, "name", group);
+ds_map_add(api, "value", def);
 
 // Set the API Map to the Instance
-inst.js_api = api;
+inst.ds_api = api;
 
 // Call the API Trigger
 with(inst)
-    event_user(event_js_api);
+    event_user(inst.event_js_api);
 
 // Clear the API Map
-inst.js_api = noone;
+inst.ds_api = noone;
 
 // Destroy the Map
 ds_map_destroy(api);
